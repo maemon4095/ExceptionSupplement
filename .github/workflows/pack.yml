@@ -18,6 +18,14 @@ jobs:
         with:
           dotnet-version: '6.0.x'
 
+      - name: add source
+        run: >
+          dotnet nuget add source "https://nuget.pkg.github.com/${{ github.repository_owner }}/index.json" 
+          -n "github" 
+          -u ${{ github.repository_owner }} 
+          -p ${{ secrets.NUGET_API_KEY  }}
+          --store-password-in-clear-text
+
       - name: pack
         run: |
           dotnet pack -c Release -o ./.artifacts -p:RepositoryUrl='${{ github.server_url }}/${{ github.repository }}'
@@ -27,13 +35,6 @@ jobs:
           name: packages
           path: ./.artifacts
       
-      - name: add source
-        run: >
-          dotnet nuget add source "https://nuget.pkg.github.com/${{ github.repository_owner }}/index.json" 
-          -n "github" 
-          -u ${{ github.repository_owner }} 
-          -p ${{ secrets.NUGET_API_KEY  }}
-          --store-password-in-clear-text
       
       - name: publish
         run: >
