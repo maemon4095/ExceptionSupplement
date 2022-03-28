@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32228.430
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExceptionSupplement.Test", "ExceptionSupplement.Test\ExceptionSupplement.Test.csproj", "{A6B23B1B-397D-4298-859F-7BE13C5E8360}"
+	ProjectSection(ProjectDependencies) = postProject
+		{649B1502-6099-4FEE-AF4F-FFD9DBE56DD1} = {649B1502-6099-4FEE-AF4F-FFD9DBE56DD1}
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExceptionSupplement", "ExceptionSupplement\ExceptionSupplement.csproj", "{649B1502-6099-4FEE-AF4F-FFD9DBE56DD1}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A6B23B1B-397D-4298-859F-7BE13C5E8360}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A6B23B1B-397D-4298-859F-7BE13C5E8360}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A6B23B1B-397D-4298-859F-7BE13C5E8360}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A6B23B1B-397D-4298-859F-7BE13C5E8360}.Release|Any CPU.Build.0 = Release|Any CPU
+		{649B1502-6099-4FEE-AF4F-FFD9DBE56DD1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{649B1502-6099-4FEE-AF4F-FFD9DBE56DD1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{649B1502-6099-4FEE-AF4F-FFD9DBE56DD1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{649B1502-6099-4FEE-AF4F-FFD9DBE56DD1}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {BF12CD92-8D48-44C0-927F-22DEE25886B5}
+	EndGlobalSection
+EndGlobal
