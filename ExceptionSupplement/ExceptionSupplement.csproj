@@ -32,7 +32,7 @@
 	<!-- nuget -->
 	<PropertyGroup>
 		<Authors>maemon4095</Authors>
-		<Version>0.0.0</Version>
+		<Version>0.0.1</Version>
 		<Description>helper to simplify throwing exceptions</Description>
 	</PropertyGroup>
 	<ItemGroup>
