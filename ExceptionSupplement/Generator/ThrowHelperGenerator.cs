@@ -33,14 +33,17 @@ public class ThrowHelperGenerator : IncrementalSourceGeneratorBase<ClassDeclarat
     [global::System.AttributeUsage(global::System.AttributeTargets.Class, AllowMultiple = true)]
     class ThrowExceptionAttribute : global::System.Attribute
     {
-        public ThrowExceptionAttribute(Type type)
+        public ThrowExceptionAttribute(Type type, bool prefix = true)
         {
             if(type.BaseType != typeof(global::System.Attribute)) throw new global::System.ArgumentException();
             this.ExceptionType = type;
+            this.Prefix = prefix;
         }
-
+        
+        public bool Prefix { get; }
         public Type ExceptionType { get; }
     }
+    
 }", Encoding.UTF8);
 
         return ("ExceptionSupplement.ThrowExceptionAttribute.g.cs", source);
@@ -67,17 +70,20 @@ public class ThrowHelperGenerator : IncrementalSourceGeneratorBase<ClassDeclarat
 
             foreach (var attributeData in attributes)
             {
-                var attribute = (attributeData.ConstructorArguments.First().Value as INamedTypeSymbol)!;
-                var constructors = attribute.Constructors;
+                var arguments = attributeData.ConstructorArguments;
+                var exception = (arguments[0].Value as INamedTypeSymbol)!;
+                var prefix = arguments.Length < 2 || (bool)arguments[1].Value;
+                var constructors = exception.Constructors;
                 const string ExceptionSufix = "Exception";
+                const string ThrowPrefix = "Throw";
 
-
-                var signeture = RemoveSufix(attribute.Name, ExceptionSufix);
+                var signeture = RemoveSufix(exception.Name, ExceptionSufix);
+                if(prefix) signeture = ThrowPrefix + signeture; 
 
                 foreach (var constructor in constructors.Where(ctor => ctor.DeclaredAccessibility == Accessibility.Public))
                 {
                     var parameters = constructor.Parameters;
-                    writer["public static void Throw"][signeture]["("].End();
+                    writer["public static void "][signeture]["("].End();
 
                     for (var index = 0; index < parameters.Length; ++index)
                     {
@@ -88,7 +94,7 @@ public class ThrowHelperGenerator : IncrementalSourceGeneratorBase<ClassDeclarat
                     writer[")"].Line()
                           ["{"].Line().Indent(1);
 
-                    writer["throw new "][attribute.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat)]["("].End();
+                    writer["throw new "][exception.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat)]["("].End();
                     for (var index = 0; index < parameters.Length; ++index)
                     {
                         var parameter = parameters[index];

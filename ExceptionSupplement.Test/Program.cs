@@ -12,3 +12,10 @@ static partial class ThrowHelper
 {
 
 }
+
+[ThrowException(typeof(ArgumentException), false)]
+[ThrowException(typeof(ArgumentNullException), false)]
+static partial class Throw
+{
+
+}
